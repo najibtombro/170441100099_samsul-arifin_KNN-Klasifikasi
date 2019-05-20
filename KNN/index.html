@@ -1,0 +1,797 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="DATA MINING PROJECT">
+      
+      
+        <link rel="canonical" href="https://najibtombro.github.io/170441100099_samsul-arifin_KNN-Klasifikasi/KNN/">
+      
+      
+        <meta name="author" content="samsul arifin">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.2.0">
+    
+    
+      
+        <title>K-nearest neighbor - DATA MINING</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.750b69bd.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "None", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#knn-model-klasifikasi" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://najibtombro.github.io/170441100099_samsul-arifin_KNN-Klasifikasi/" title="DATA MINING" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              DATA MINING
+            </span>
+            <span class="md-header-nav__topic">
+              K-nearest neighbor
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/najibtombro/170441100099_samsul-arifin_KNN-Klasifikasi" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    najibtombro/170441100099_samsul-arifin_KNN-Klasifikasi
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+<nav class="md-tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+      
+        
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://najibtombro.github.io/170441100099_samsul-arifin_KNN-Klasifikasi/" title="DATA MINING" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    DATA MINING
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/najibtombro/170441100099_samsul-arifin_KNN-Klasifikasi" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    najibtombro/170441100099_samsul-arifin_KNN-Klasifikasi
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        K-nearest neighbor
+      </label>
+    
+    <a href="./" title="K-nearest neighbor" class="md-nav__link md-nav__link--active">
+      K-nearest neighbor
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#knn-model-klasifikasi" title="KNN Model Klasifikasi" class="md-nav__link">
+    KNN Model Klasifikasi
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-logistic-regression" title="1. Logistic regression" class="md-nav__link">
+    1. Logistic regression
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-knn-k5" title="2. KNN (K=5)" class="md-nav__link">
+    2. KNN (K=5)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-knn-k1" title="3. KNN (K=1)" class="md-nav__link">
+    3. KNN (K=1)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-membuat-prediksi-pada-data-out-of-sample" title="3. Membuat prediksi pada data out-of-sample" class="md-nav__link">
+    3. Membuat prediksi pada data out-of-sample
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../TREE/" title="DECISION TREE" class="md-nav__link">
+      DECISION TREE
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#knn-model-klasifikasi" title="KNN Model Klasifikasi" class="md-nav__link">
+    KNN Model Klasifikasi
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-logistic-regression" title="1. Logistic regression" class="md-nav__link">
+    1. Logistic regression
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-knn-k5" title="2. KNN (K=5)" class="md-nav__link">
+    2. KNN (K=5)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-knn-k1" title="3. KNN (K=1)" class="md-nav__link">
+    3. KNN (K=1)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-membuat-prediksi-pada-data-out-of-sample" title="3. Membuat prediksi pada data out-of-sample" class="md-nav__link">
+    3. Membuat prediksi pada data out-of-sample
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>K-nearest neighbor</h1>
+                
+                <h2 id="knn-model-klasifikasi">KNN Model Klasifikasi<a class="headerlink" href="#knn-model-klasifikasi" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Prosedur evaluasi 1 - Latih dan uji seluruh dataset
+    •   Sebuah. Regresi logistik
+• b. KNN (k = 5)
+• c. KNN (k = 1)
+• d. Masalah dengan pelatihan dan pengujian pada data yang sama</li>
+<li>Prosedur evaluasi 2 - Melatih / membagi ujian</li>
+<li>Membuat prediksi pada data out-of-sample</li>
+<li>Kerugian perpecahan latih / uji</li>
+<li>Sumberdaya</li>
+</ol>
+<h2 id="_1"><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Prosedur evaluasi 1 - Latih dan uji seluruh dataset</li>
+<li>Latih model pada seluruh dataset.</li>
+<li>Uji model pada dataset yang sama, dan evaluasi seberapa baik yang kami lakukan dengan membandingkan nilai respons yang diprediksi dengan nilai respons yang sebenarnya.</li>
+</ol>
+<div class="codehilite"><pre><span></span><span class="c1"># read in the iris data</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+
+<span class="c1"># create X (features) and y (response)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span>
+</pre></div>
+
+<h4 id="1-logistic-regression">1. Logistic regression<a class="headerlink" href="#1-logistic-regression" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><span class="c1"># import the class</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+
+<span class="c1"># instantiate the model (using the default parameters)</span>
+<span class="n">logreg</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+
+<span class="c1"># fit the model with data</span>
+<span class="n">logreg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># predict the response values for the observations in X</span>
+<span class="n">logreg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span>output : 
+array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1,
+       1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2])
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="c1"># store the predicted response values</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">logreg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># check how many predictions were generated</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span>output :
+150
+</pre></div>
+
+<p>Akurasi klasifikasi:</p>
+<ol>
+<li>Proporsi prediksi yang benar</li>
+<li>Metrik evaluasi umum untuk masalah klasifikasi.</li>
+</ol>
+<div class="codehilite"><pre><span></span><span class="c1"># compute classification accuracy for the logistic regression model</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</pre></div>
+
+<p>0,96</p>
+<ol>
+<li>Dikenal sebagai akurasi pelatihan saat Anda melatih dan menguji model pada data yang sama</li>
+<li>96% dari prediksi kami benar</li>
+</ol>
+<h4 id="2-knn-k5">2. KNN (K=5)<a class="headerlink" href="#2-knn-k5" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">knn</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</pre></div>
+
+<p>0,966666666667
+Sepertinya, ada akurasi yang lebih tinggi di sini tetapi ada masalah besar pengujian pada data pelatihan Anda</p>
+<h4 id="3-knn-k1">3. KNN (K=1)<a class="headerlink" href="#3-knn-k1" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">knn</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</pre></div>
+
+<p>1.0</p>
+<ol>
+<li>Model KNN
+   Pilih nilai untuk K.
+   Cari pengamatan K dalam data pelatihan yang "terdekat" dengan pengukuran iris yang tidak diketahui
+   Gunakan nilai respons paling populer dari K tetangga terdekat sebagai nilai respons yang diprediksi untuk iris yang tidak diketahui</li>
+<li>Ini akan selalu memiliki akurasi 100%, karena kami menguji pada data yang sama persis, itu akan selalu membuat prediksi yang benar</li>
+<li>KNN akan mencari satu pengamatan terdekat dan menemukan pengamatan yang sama persis
+   KNN telah hafal set pelatihan
+   Karena kami menguji pada data yang sama persis, itu akan selalu membuat prediksi yang sama</li>
+</ol>
+<p>Masalah dengan pelatihan dan pengujian pada data yang sama</p>
+<ol>
+<li>Tujuannya adalah untuk memperkirakan kemungkinan kinerja model pada data yang tidak sampel</li>
+<li>Tetapi, memaksimalkan akurasi pelatihan memberi penghargaan pada model yang terlalu rumit yang tidak perlu digeneralisasi</li>
+<li>
+<p>Model rumit yang tidak perlu melengkapi data pelatihan</p>
+</li>
+<li>
+<p>Prosedur evaluasi 2 - Melatih / membagi ujian</p>
+</li>
+<li>Pisahkan dataset menjadi dua bagian: satu set pelatihan dan satu set pengujian.</li>
+<li>Latih model pada set pelatihan.</li>
+<li>Uji model pada set pengujian, dan evaluasi seberapa baik yang kami lakukan.</li>
+</ol>
+<div class="codehilite"><pre><span></span><span class="c1"># print the shapes of X and y</span>
+<span class="c1"># X is our features matrix with 150 x 4 dimension</span>
+<span class="k">print</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># y is our response vector with 150 x 1 dimension</span>
+<span class="k">print</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span>output :
+(150, 4)
+(150,)
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="c1"># STEP 1: split X and y into training and testing sets</span>
+<span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+
+<ol>
+<li>test_size = 0,4
+   40% dari pengamatan untuk menguji set
+   60% pengamatan untuk set pelatihan</li>
+<li>
+<p>data ditetapkan secara acak kecuali Anda menggunakan hyperparameter random_state
+   Jika Anda menggunakan random_state = 4
+   Data Anda akan dipisah dengan cara yang sama persis</p>
+</li>
+<li>
+<p>Model dapat dilatih dan diuji pada data yang berbeda</p>
+</li>
+<li>
+<p>Nilai respons dikenal untuk set pengujian, dan dengan demikian prediksi dapat dievaluasi</p>
+</li>
+<li>
+<p>Akurasi pengujian adalah perkiraan yang lebih baik daripada akurasi pelatihan kinerja out-of-sampel</p>
+</li>
+</ol>
+<div class="codehilite"><pre><span></span><span class="c1"># print the shapes of the new X objects</span>
+<span class="k">print</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span>output :
+(90, 4)
+(60, 4)
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="c1"># print the shapes of the new y objects</span>
+<span class="k">print</span><span class="p">(</span><span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">y_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span>output :
+(90,)
+(60,)
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="c1"># STEP 2: train the model on the training set</span>
+<span class="n">logreg</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">logreg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span>output :
+LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept=True,
+          intercept_scaling=1, max_iter=100, multi_class=&#39;ovr&#39;, n_jobs=1,
+          penalty=&#39;l2&#39;, random_state=None, solver=&#39;liblinear&#39;, tol=0.0001,
+          verbose=0, warm_start=False)
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="c1"># STEP 3: make predictions on the testing set</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">logreg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># compare actual response values (y_test) with predicted response values (y_pred)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span>output :
+0.95
+</pre></div>
+
+<p>Ulangi untuk KNN dengan K = 5:</p>
+<div class="codehilite"><pre><span></span><span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">knn</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span>0.966666666667
+</pre></div>
+
+<p>Ulangi untuk KNN dengan K = 1:</p>
+<div class="codehilite"><pre><span></span><span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">knn</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span>0.966666666667
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="c1"># try K=1 through K=25 and record testing accuracy</span>
+<span class="n">k_range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">26</span><span class="p">)</span>
+
+<span class="c1"># We can create Python dictionary using [] or dict()</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># We use a loop through the range 1 to 26</span>
+<span class="c1"># We append the scores in the dictionary</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">k_range</span><span class="p">:</span>
+    <span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
+    <span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">knn</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    <span class="n">scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span>output :
+[0.94999999999999996, 0.94999999999999996, 0.96666666666666667, 0.96666666666666667, 0.96666666666666667, 0.98333333333333328, 0.98333333333333328, 0.98333333333333328, 0.98333333333333328, 0.98333333333333328, 0.98333333333333328, 0.98333333333333328, 0.98333333333333328, 0.98333333333333328, 0.98333333333333328, 0.98333333333333328, 0.98333333333333328, 0.96666666666666667, 0.98333333333333328, 0.96666666666666667, 0.96666666666666667, 0.96666666666666667, 0.96666666666666667, 0.94999999999999996, 0.94999999999999996]
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="c1"># import Matplotlib (scientific plotting library)</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+
+<span class="c1"># allow plots to appear within the notebook</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+
+<span class="c1"># plot the relationship between K and testing accuracy</span>
+<span class="c1"># plt.plot(x_axis, y_axis)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k_range</span><span class="p">,</span> <span class="n">scores</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Value of K for KNN&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Testing Accuracy&#39;</span><span class="p">)</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span>&lt;matplotlib.text.Text at 0x111d43ba8&gt;
+</pre></div>
+
+<p><img alt="img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZMAAAEPCAYAAACHuClZAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz%0AAAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xu4XFWd5vHvmxuQgEmEhBhCbiQCobkqkW5Ej4IS6dY4%0AGS/EZgTlCbElDdo9M0TGngRH7YSepkWRaRGaJ/ag2NJR8AYB4Yj2GIMkhFtITsiFxFwMhEsCAknO%0Ab/7Yu5KiUnVOnVO1q+pUvZ/nOU+q9nVVUdRba+2111JEYGZmVol+9S6AmZn1fQ4TMzOrmMPEzMwq%0A5jAxM7OKOUzMzKxiDhMzM6tY5mEiaZqkpyStkXRVkfXDJC2WtFLSUklT8tZ9XtLjkh6VdJukQeny%0AeZI2S1qe/k3L+nWYmVlpmYaJpH7ADcD5wEnATEknFGx2NbAiIk4FLga+nu47Gvhr4IyIOAUYAFyY%0At991EXFG+nd3lq/DzMy6lnXNZCrQEREbI2IPcDswvWCbKcD9ABGxGhgvaUS6rj8wRNIAYDCwJW8/%0AZVpyMzMrW9ZhcgywKe/55nRZvpXADABJU4GxwJiI2AL8I/AM8HvghYi4L2+/OZIekXSzpKFZvQAz%0AM+teI1yAXwAMl7QcuBxYAeyTNIykFjMOGA0cLukT6T43AhMj4jRgG3Bd7YttZmY5AzI+/u9Jaho5%0AY9Jl+0XELuDTueeS1gHrgGnAuojYmS5fDPwZ8N2I2JF3iG8DPy52ckkeeMzMrBciokeXErKumTwE%0ATJI0Lu2JdSFwV/4GkoZKGpg+ngU8GBG7SZq3zpJ0qCQB5wKr0u1G5R1iBvB4qQJEhP8imDdvXt3L%0A0Ch/fi/8Xvi96PqvNzKtmUTEPklzgCUkwXVLRKySNDtZHTcBJwKLJHUCTwCXpvsuk3QHSbPXnvTf%0Am9JDXyvpNKAT2ADMzvJ1mJlZ17Ju5iKSbrvHFyz7Vt7jpYXr89ZdA1xTZPknq1xMMzOrQCNcgLca%0AaGtrq3cRGobfiwP8Xhzg96Iy6m37WF8gKZr59ZmZZUES0WAX4M3MrAU4TMzMrGKZX4C3vmnnTvji%0AF2Hv3nqXxJrBIYfAtdfCYYdle57XXoNvfxvmzMn2PHYwXzOxon76U7j6arj88nqXxJrBggXw/e/D%0AmWdme56HH4azzoI//hEG+Kdyr/XmmonfbiuqowPe9S647LJ6l8SawX33JZ+prMOkoyOpTW/cCMcd%0Al+257I18zcSKWrsWJk+udymsWUyenHymspY7Ry3OZW/kMLGiOjpg0qR6l8KaxaRJyWcqax0dMGRI%0Abc5lb+QwsaI6OlwzseqZPLl2YXLeeQ6TenCY2EFefx22bIHx4+tdEmsWtQyTCy5wmNSDw8QOsm4d%0AHHssDBxY75JYsxg5EvbsSbqcZ+WFF+DVV+Gccxwm9eAwsYO4icuqTcq+dpK7zjdxIjzzTBJeVjsO%0AEzuIw8SyUIswmTw5uUFy9GjYsCG7c9nBHCZ2EIeJZSHrMMnvzl6rrsh2gMPEDrJ2rbsFW/VNmpTt%0AF3z+j6BaXfC3AxwmdhDXTCwLtbpmArW7r8UOcJjYG7z6KmzbBuPG1bsk1mxyYZLVcHmumdSXw8Te%0AYN26JEg8SJ5V21FHJUHy3HPVP/bOnUnvrZEjk+cOk9rLPEwkTZP0lKQ1kq4qsn6YpMWSVkpaKmlK%0A3rrPS3pc0qOSbpM0KF0+XNISSasl3SNpaNavo1W4icuykmX34NznVuk4txMmwObNyQ24VhuZhomk%0AfsANwPnAScBMSScUbHY1sCIiTgUuBr6e7jsa+GvgjIg4hWSE4wvTfeYC90XE8cD9wBeyfB2txGFi%0AWco6THIGDYIxY2D9+uqfy4rLumYyFeiIiI0RsQe4HZhesM0UkkAgIlYD4yWNSNf1B4ZIGgAMBn6f%0ALp8OLEofLwI+nN1LaC0OE8tSVmFSbJRrdw+urazD5BhgU97zzemyfCuBGQCSpgJjgTERsQX4R+AZ%0AkhB5ISJ+ke4zMiK2A0TENmBkZq+gxbhbsGUpqy/4Yj+CfN2kthrhAvwCYLik5cDlwApgn6RhJDWQ%0AccBo4HBJnyhxDE+nWCWumViWsuqy6zCpv6z77PyepKaRM4YDTVUARMQu4NO555LWAeuAacC6iNiZ%0ALl8M/BnwXWC7pKMjYrukUcAfShVg/vz5+x+3tbXR1tZW2StqYn/8I+zYAWPHdr+tWW/kdw9WjyaF%0ALS2i+Pw7kybBT35SnXM0u/b2dtrb2ys6RqZzwEvqD6wGzgW2AsuAmRGxKm+bocArEbFH0izg7Ii4%0AJG3yugU4E3gNuBV4KCK+KWkhsDMiFqY9xIZHxNwi5/cc8D3w+OPw0Y/CqlXdb2vWW29+Mzz11IFu%0AvJV69tkkOJ5//o0B1dEB73+/L8L3Rm/mgM+0mSsi9gFzgCXAE8DtEbFK0mxJudnFTwQel7SKpNfX%0Alem+y4A7SJq9VgICbkr3WQi8T1IuqBZk+TpahZu4rBaq3fxU2C04Z/z4ZF6e116r3rmstMxvTYuI%0Au4HjC5Z9K+/x0sL1eeuuAa4psnwncF51S2oOE6uFXJicfXZ1jlfqcztwYNJku24dnHhidc5lpTXC%0ABXhrEA4Tq4Vq10yKdQvOP5e7B9eGw8T2K3YR06zasmrmqsW5rDSHie3X1S88s2qpdm3BYdIYHCYG%0AwCuvJAPwHXtsvUtizS53r0k1OlqW6hZceC7LnsPEgOSX4sSJ0M+fCMvY8OHJ1Lrbt1d+rB07oH9/%0AOPLI4utdM6kdf3UY4IvvVlvV+pLv7nM7blwSWq++Wvm5rGsOEwMcJlZbtQqTAQOSQHn66crPZV1z%0AmBjgMLHaqlaYlNNpxN2Da8NhYoC7BVtt1apmUs1zWdccJga4ZmK1Va3agsOkcThMjN274cUX4ZjC%0AmWbMMjJpUhImlXQP7q5bcI7DpDYcJsbatXDcce4WbLUzdCgMHgxbt/b+GNu3J12Mhw/vejvfa1Ib%0A/vowN3FZXVRaYyj3czt2bHI/yiuv9P5c1j2HiTlMrC5qFSb9+8OECe4enDWHiTlMrC4qDZOejCXn%0A7sHZc5iYuwVbXdSqZlKNc1n3HCbmmonVhcOkuThMWtxLLyVdg0ePrndJrNVMmpRcx+js7Pm+EUmz%0AVbk1aodJ9hwmLS73P2Th/NlmWTviCHjTm5J52ntq69aka/HQoeVt7+7B2cs8TCRNk/SUpDWSriqy%0AfpikxZJWSloqaUq6/K2SVkhanv77oqQr0nXzJG1O1y2XNC3r19Gs3MRl9dTbGkNPP7fHHgs7d8LL%0AL/f8XFaeTMNEUj/gBuB84CRgpqQTCja7GlgREacCFwNfB4iINRFxekScAbwNeBlYnLffdRFxRvp3%0Ad5avo5k5TKyeahUm/fol8/W4R1d2sq6ZTAU6ImJjROwBbgemF2wzBbgfICJWA+MljSjY5jzg6YjY%0AnLfMDTNV4DCxeuptmPRmiml3D85W1mFyDLAp7/nmdFm+lcAMAElTgbHAmIJtPg58r2DZHEmPSLpZ%0AUpktp1bI3YKtnmpVM6nkXFaeAfUuALAAuF7ScuAxYAWwL7dS0kDgQ8DcvH1uBL4UESHpy8B1wKXF%0ADj5//vz9j9va2mhra6ty8fs210ysnmodJr/9bc/P1Qra29tpb2+v6BiKSobt7O7g0lnA/IiYlj6f%0AC0RELOxin/XAyRGxO33+IeCzuWMU2X4c8OOIOKXIusjy9fV1L7yQXJh86SX35rL6ePllOOqo5N9y%0ABxrt7Ex6gm3blvxbrgcegHnz4MEHe1fWViKJiOjRt0LWzVwPAZMkjZM0CLgQuCt/A0lD09oHkmYB%0Av8wFSWomBU1ckkblPZ0BPJ5F4ZuduwVbvQ0Zkoz6u3lz99vmbNmSdCnuSZCAm7mylmkzV0TskzQH%0AWEISXLdExCpJs5PVcRNwIrBIUifwBHnNVZIGk1x8v6zg0NdKOg3oBDYAs7N8Hc3KTVzWCHJf8mPH%0Alrd9b6/zjR6dzNuza1fPg8i6l/k1k7Tb7vEFy76V93hp4fq8da8AhT27iIhPVrmYLclhYo0gFybn%0Anlve9r393Pbrl8zbs3YtnH56z/e3rvkO+BbmMLFG0NPmp950C84/l7sHZ8Nh0sLcLdgaQU/DpJIf%0AQb5ukh2HSQtzzcQagcOkOThMWtTOnbBnD4wcWe+SWKs77jhYvx727et+285OWLeu9zVqh0l2HCYt%0AKvfrzt2Crd4GD4YRI2DTpu633bw56Uo8ZEjvzuUwyY7DpEVVchHTrNrKHSK+0ut8b3lLMn/PSy/1%0A/hhWnMOkRfl6iTWScmsMlX5uJc9tkhWHSYtymFgjKTdMqlGjdvfgbDhMWpS7BVsjqVXNpCfnsp5x%0AmLSgCNdMrLE4TPq+bsNE0l95vpDm8txzSaAcdVS9S2KWOO442LgR9u4tvc2+fUkX4uOOq+xcDpNs%0AlFMzGQcsl/RdSedlXSDLnrsFW6M59FA4+ugkUErZtCn5ATR4cGXncphko9swiYi5wGTgNuAzkjok%0AfUnS+IzLZhlxt2BrRJMmdX1hvFpNs0cfDa++msznY9VT1jWTiMgN9b6BZNj3twB3Svr7zEpmmfH1%0AEmtE3dUYqtVpxN2Ds1HONZPLJS0DrgceBk6JiFnA6SRzs1sf4zCxRtRdmFSzRu3uwdVXznwmo4GZ%0AEfF0/sKI6Eyn1LU+xt2CrRFNngy/+EXp9R0d8K53Ve9crplUVznNXD8CtueeSDpC0tsBIsLT5fYx%0A7hZsjaqcZq5q1kwcJtVVTpjcBLyS9/xl4FsltrUGt2MH9O8PRx5Z75KYvdHEifDMM8lo1oX27oUN%0AGyrvFpzjMKm+csKkX3oBHth/MX5gdkWyLLlWYo3qkEOSedo3bDh43TPPJL2wDj20OudymFRfOWGy%0APr1xsb+kfpIuJ+nVVRZJ0yQ9JWmNpKuKrB8mabGklZKWSpqSLn+rpBWSlqf/vijpinTdcElLJK2W%0AdI9vqiyfw8QaWakL49X+3I4YkdR2du6s3jFbXTlhMhs4l+S6yXbg3cCscg4uqR9wA3A+cBIwU9IJ%0ABZtdDayIiFOBi4GvA0TEmog4PSLOAN5G0ry2ON1nLnBfRBwP3A98oZzymO8xscZWqstutTuNuHtw%0A9ZVz0+L2iPhIRBwVESMi4mMRsb27/VJTgY6I2BgRe4DbgekF20whCQQiYjUwXtKIgm3OA56OiM3p%0A8+nAovTxIuDDZZan5blmYo2sVPNTFj+C3NRVXd12DZZ0CHAJSc1if4tlRFxWxvGPAfLnT9tMEjD5%0AVgIzgP+QNBUYC4wBduRt83Hge3nPR+YCLSK2SfLks2Vyt2BrZJMnwz33HLy8owPe+97qn8v3mlRP%0AOfeZfAdYB/wF8BXgE8ATVSzDAuB6ScuBx4AVwP7ZoCUNBD5E0rRVSpRaMX/+/P2P29raaGtrq6y0%0AfZi7BVujK1VbyOJzWyq4WlF7ezvt7e0VHUMRJb+Hkw2kFRFxuqRHI+KU9Mv9VxFxVrcHl84C5kfE%0AtPT5XCAiYmEX+6wHTo6I3enzDwGfzR0jXbYKaIuI7ZJGAQ9ExIlFjhXdvb5Wsm0b/MmfwLPP1rsk%0AZsW9/joccQTs2gWDBiXL9u6Fww+HF19MenxVy29+A1deCcuWVe+YzUISEdGjoWDLuQCf6/X9gqQT%0AgSOAcpuVHgImSRonaRBwIXBX/gaShqYBhaRZwC9zQZKayRubuEiPcUn6+GLgzjLL09JcK7FGN2gQ%0AjBmTDDWfs2FDMnd7NYMEDtSC/HuzOsoJk1skDQfmAfcAa4D/Xc7BI2IfMAdYQtI0dntErJI0W1Lu%0AmsuJwONpbeN84Mrc/pIGk1x8X/zGI7MQeJ+k1SQ9zRaUU55W5zCxvqCwqSurz23uxt3nnqv+sVtR%0Al9dMJPUHno2I54EHSC6O90hE3A0cX7DsW3mPlxauz1v3ClDYs4uI2EkSMtYDDhPrCwqHos/qcysd%0ACC5PFFe5Lmsmac3i6hqVxTLme0ysLyismaxdm10PRN9rUj3lNHMtkfQ5SW+R9KbcX+Yls6pzt2Dr%0AC2rVzJU7l7sHV0c5XYMvSv/927xlQS+avKx+Ilwzsb6h1mHy059mc+xW022YRMSxtSiIZWvr1mTu%0A7KEexcwa3PjxsGULvPYa9OsHmzfDhAnZnMt3wVdPOXfAf6LY8oj4bvWLY1nxxXfrKwYOhLFjYd26%0AZLqEY445cM9JteV3D1aP7qqwQuU0c52T9/hQ4L0k0/c6TPoQh4n1Jbkv+f79s/3cvvnNMGBAMs/P%0ASA/KVJFymrn+Kv95es+Jg6SPcZhYX5K7MN6vX/af21xwOUwqU05vrkK7gInVLohlyxffrS/JddnN%0Asltw4bmsMuVcM/khBwZS7EcyerCHL+lj3C3Y+pLJk+HOO5NmrgsuyP5c7h5cuXKumdyQ93gvsDEi%0ANmRTHMtCZyc8/bRrJtZ31OqaSe5cd/rnccXKCZMO4A8R8SqApMMkHRsRm7rZzxrEli3JSKxHHFHv%0AkpiVZ9w42J5OwTd+fLbncvfg6ijnmslioDPveSfw79kUx7Lgi+/W1wwYkATKsccmXYWz5NGDq6Oc%0AmsmAiHg99yQiXktnX7Q+wmFifdHkyUkTbdaGDYNDD01qQqNGZX++ZlVOmDwn6YKI+BmApL8AdmZb%0ArOb35JPwta/V5lwPPwwf+UhtzmVWLbUKk9y5PvvZxh49+NJL4R3vqHcpSitnpsW3ktxXko7+zw7g%0AoohYk3HZKtbIMy0uWAAPPggf/nBtzvfBDyYTDJn1FRs3Jk1PWV8zAVi6FB59NPvz9Nb99yf///7T%0AP9XmfL2ZabHbMMk7+DCAiHihF2Wri0YOk9yvjMsu635bM2ttP/oR3Hwz/OQntTlfJtP2SvpfkoZF%0AxAsR8YKk4ZKu6X0xDXwToZmVry/cC1NOb66/yK+NpLMufjC7IrUG30RoZuWaOBE2bIC9e+tdktLK%0ACZP+kvaP2SnpUCCjMTxbw+7d8MILyWioZmbdOeywZOywZ56pd0lKKydMbgfulXSxpIuBe+jBQI+S%0Apkl6StIaSVcVWT9M0mJJKyUtlTQlb91QST+QtErSE5LekS6fJ2mzpOXp37Ryy9MI1q6F445LBrEz%0AMytHo99cWc6owV+V9ChwXrro2ogoa24ySf1IhmM5F9gCPCTpzoh4Km+zq4EVETFD0vHAN/POdT3w%0As4j4qKQBwOC8/a6LiOvKKUej8X0fZtZTuTA5//x6l6S4sn4bR8RPIuJzEfE5kvtOri/z+FOBjojY%0AGBF7SGo50wu2mQLcn55nNTBe0oh0nvlzIuLWdN3eiHgpb78+O5WNw8TMeqrRayZlhYmkkyV9VdLT%0AwD8A68s8/jFA/hhem9Nl+VYCM9LzTCWZW34MMAF4VtKtaVPWTZIOy9tvjqRHJN0sqU9NRuswMbOe%0AavQwKdnMJWkiMDP92w18HxgYEeeU2qeXFgDXS1oOPAasAPYBA4EzgMsj4neSvgbMBeYBNwJfioiQ%0A9GXgOuDSYgefP3/+/sdtbW20tbVVufg919EBl1xS71KYWV+SZZi0t7fT3t5e0TFK3rQoqRP4FTAr%0Ad7e7pHURUfbEWJLOAuZHxLT0+VwgImJhF/usB04GhgC/yZ1P0juBqyLigwXbjwN+HBGnFDlWQ960%0AOGpUMsSJe3OZWblefRWGDk16g2Y9+GW1b1r8GMnQKfdJulHSu+n5dYqHgEmSxqXdiy8E7ioo9FBJ%0AA9PHs4BfRsTuiNgObEqHc4HkIv6T6Xb5w7HNAB7vYbnq5qWXYNcuGD263iUxs77k0EOTIVU2bqx3%0ASYor2cwVEXcAd0g6AvhPJE1MR0v6BvDDiLi/u4NHxD5Jc4AlJMF1S0SskjQ7WR03AScCi9Ka0BO8%0AsbnqCuC2NGzWAZ9Kl18r6TSS4fA3ALN78qLrKTcNqfps9wEzq5dcU1cj3vBc9thcAJKOIqmxfDwi%0A3p1ZqaqkEZu5vv99+MEP4I476l0SM+trPvtZOOEEuOKKbM+Tydhc+SLi2Yi4sS8ESaNyTy4z661G%0A7tHle7BrzGFiZr3lMLH9HCZm1lsOE9svdwHezKynJkyAzZvh9de737bWypnP5HlJOwv+1qcDMI7P%0AvojN48UX4Y9/9DzTZtY7gwYl96dt2FDvkhysnDngvwls5cBIwTOB8STDoNwKvCeTkjWhXJc+dws2%0As97KNXW99a3db1tL5TRzfTAivhkRz6d/NwLvj4jbgDdnXL6m4uslZlapRr1uUk6Y/FHSjNyT9PFr%0A6dPOTErVpBwmZlapvhwmFwGz0mslzwGzgP8iaTDwuUxL12QcJmZWqUYNk3Imx1oLfKDE6l9WtzjN%0AraMDPvOZepfCzPqyRg2TbodTSYdQ+TTJRff94RMRl2VasipotOFUjjwSnnwSjj663iUxs75qzx44%0A/PBk0NhDDsnmHL0ZTqWc3lx3AkuBX5PMM2K9sHNn8iEYObLeJTGzvmzgQBg7FtavT8bpahTlhMmQ%0AiPjbzEvS5NauTaqn7hZsZpWaNClp6mqkMCnnAvzPJb0/85I0OV98N7NqacTrJuWEyWeAuyXtTnt0%0APS9pZ9YFazYOEzOrlr4aJkeRzMc+FBiRPh+RZaGakcPEzKqlT4WJpNxX30kl/qwHHCZmVi2NGCYl%0AuwZLuiUiLpX0qyKrIyLelW3RKtcoXYMj4M1vhjVrYITrdGZWob17k+7BL7yQzA1fbVXtGhwRubnY%0A3xsRewpONLAX5WtZzz2XBMpRR9W7JGbWDAYMgHHj4Omn4aQGaScq55rJb8tcVpSkaZKekrRG0lVF%0A1g+TtFjSSklLJU3JWzc0Hep+laQnJL0jXT5c0hJJqyXdI2loueWpB3cLNrNqmzQp+W5pFF1dMxkp%0A6VTgMEknSzol/XsnMLicg0vqB9wAnE9ynWWmpMKe0VcDKyLiVOBi4Ot5664HfhYRJwKnAqvS5XOB%0A+yLieOB+4AvllKdefL3EzKqt0a6bdHXT4p+TDKMyhmROk9zv6l3A35V5/KlAR0RsBJB0OzAdeCpv%0AmynA3wNExGpJ4yWNIBmZ+JyIuCRdtxd4Kd1nOvDu9PEioJ0kYBqSw8TMqm3yZHj00XqX4oCSNZOI%0AuDUizgEujYh3RcQ56d8FEfGDMo9/DLAp7/nmdFm+lcAMAElTgbEkATYBeFbSrZKWS7pJ0mHpPiMj%0AYntazm1AQw9S4jAxs2rrSzWTnJGS3hQRL0n6Z+AM4AsR8YsqlWEBcL2k5cBjwAqSMcAGpue6PCJ+%0AJ+lrJLWPeRyoJeWU7LI1f/78/Y/b2tpoa2urUrHL5zAxs2qrZpi0t7fT3t5e0THKGTX40Yg4JR1S%0A5XLgfwL/EhFv6/bg0lnA/IiYlj6fS9KteGEX+6wHTgaGAL+JiInp8ncCV0XEByWtAtoiYrukUcAD%0A6XWVwmPVvWtwBAwbBuvWJaMGm5lVw759MGRIMojs4LKuYpevN12Dy+nNlfs2vgD4TkSsLHM/gIeA%0ASZLGSRoEXAjclb9B2mNrYPp4FvDLiNidNmNtkpSb6fhc4Mn08V3AJenji0lGNm5IO3ZA//4OEjOr%0Arv79YcKEpHtwIyinmWulpJ8BbwWulnQ4XTQr5YuIfZLmAEtIAuiWiFglaXayOm4CTgQWSeoEngAu%0AzTvEFcBtadisAz6VLl8I/JukTwMbgY+VU556yHULNjOrtsmTk++Yk0+ud0nKC5NPAW8D1kbEK+lk%0AWZd2s89+EXE3cHzBsm/lPV5auD5v3UrgzCLLdwLnlVuGevL1EjPLSm4o+kbQbXNVROwDJgJ/lS46%0ArJz9LOEwMbOsNFKPrm5DQdINwHuAi9JFLwP/nGWhmonDxMyy0khhUk4z159FxBmSVkDSxJReTLcy%0AOEzMLCuNFCblNFftSYdFCQBJRwKdmZaqSUQk/6EnTap3ScysGR17bNI1+OWX612SrsfmytVavgn8%0AOzBC0jXAr0l6U1k3tm+HQw6B4cPrXRIza0b9+sHEiY0x4GNXzVzLgDMi4juSHibpPSXgoxHxeE1K%0A18e5icvMspZr6jr11PqWo6sw2X/3Y0Q8QXIPiPWA7zExs6w1ylD0XYXJCEl/U2plRFyXQXmaimsm%0AZpa1yZNh2bJ6l6LrC/D9gcOBI0r8WTccJmaWtUbp0dVVzWRrRHypZiVpQg4TM8tao4RJVzUTTzJb%0AgYikHdPdgs0sS8ccAy++CLt21bccXYXJuTUrRRPaujUZFnpoQ89Ob2Z9Xb9+cNxx9b8I39VMiztr%0AWZBm4yYuM6uVRmjq8oCNGXGYmFmtOEyamO8xMbNaaYR7TRwmGXHNxMxqxTWTJuYwMbNaaYQwUURZ%0AM/D2SZKiHq+vsxOOOAK2bUv+NTPLUgQcfnjSi/RNb6r8eJKIiB7dHuKaSQa2bElCxEFiZrUg1X8K%0A38zDRNI0SU9JWiPpqiLrh0laLGmlpKWSpuSt25AuXyFpWd7yeZI2S1qe/k3L+nX0hJu4zKzW6t3U%0AVc5Mi72WTqp1A8kNkFuAhyTdGRFP5W12NbAiImZIOp5k/pTz0nWdQFtEPF/k8Nc16mCTDhMzq7V6%0Ah0nWNZOpQEdEbIyIPcDtwPSCbaYA9wNExGpgvKQR6Tp1UcaGHe7F3YLNrNbq3T046zA5BtiU93xz%0AuizfSmAGgKSpwFhgTLougHslPSRpVsF+cyQ9IulmSQ01aIlrJmZWa/WumWTazFWmBcD1kpYDjwEr%0AgH3purMjYmtaU7lX0qqI+DVwI/CliAhJXwauAy4tdvD58+fvf9zW1kZbW1tmLyTHYWJmtVZJmLS3%0At9Pe3l7R+TPtGizpLGB+RExLn88FIiJKziEvaT1wckTsLlg+D9hVeJ1E0jjgxxFxSpFj1bxrcGcn%0ADBkCO3YkXfXMzGohIukWvGkTDBtW2bEasWvwQ8AkSeMkDQIuBO7K30DSUEkD08ezgF9GxG5JgyUd%0Ani4fArwfeDx9PirvEDNyyxvB5s0wfLiDxMxqq97dgzNt5oqIfZLmAEtIguuWiFglaXayOm4CTgQW%0ASeokmWc+11x1NPBDSZGW87aIWJKuu1bSaSS9vTYAs7N8HT3hJi4zq5dcU9eZZ9b+3JlfM4mIu4Hj%0AC5Z9K+81deebAAALf0lEQVTx0sL16fL1wGkljvnJKhezahwmZlYv9bwI7zvgq8xhYmb14jBpIr7H%0AxMzqpZ73mjhMqsw1EzOrF9dMmsS+fbB+fTIfs5lZrY0cCXv2wM46TLruMKmiTZvgyCNh8OB6l8TM%0AWpFUv9qJw6SK3MRlZvXmMGkCDhMzqzeHSRNwmJhZvTlMmoDDxMzqrV5DqjhMqsj3mJhZveVqJjUe%0A49ZhUi1798KGDTBxYr1LYmat7Kijkn+fe66253WYVMkzzyR9vA87rN4lMbNWVq/uwQ6TKvH1EjNr%0AFA6TPsxhYmaNwmHShzlMzKxROEz6MIeJmTUKh0kf5m7BZtYockPR17J7sMOkCvbuTXpzTZhQ75KY%0AmSUDzvbvDzt21O6cmYeJpGmSnpK0RtJVRdYPk7RY0kpJSyVNyVu3IV2+QtKyvOXDJS2RtFrSPZKG%0AZv06urJhA4waBYceWs9SmJkdUOumrkzDRFI/4AbgfOAkYKakEwo2uxpYERGnAhcDX89b1wm0RcTp%0AETE1b/lc4L6IOB64H/hCVq+hHL5eYmaNpqnCBJgKdETExojYA9wOTC/YZgpJIBARq4Hxkkak61Si%0AjNOBRenjRcCHq13wnnCYmFmjabYwOQbYlPd8c7os30pgBoCkqcBYYEy6LoB7JT0kaVbePiMjYjtA%0ARGwDRmZQ9rI5TMys0dQ6TAbU7lQlLQCul7QceAxYAexL150dEVvTmsq9klZFxK+LHKMqfRa2boV5%0A83q+3733wje+UY0SmJlVx+TJ8OCDcNlltTlf1mHye5KaRs6YdNl+EbEL+HTuuaT1wLp03db03x2S%0AfkjSbPZrYLukoyNiu6RRwB9KFWD+/Pn7H7e1tdHW1laysIcdBm9/e5mvLM873gHveU/P9zMzy8rp%0Ap8OCBfD6691vu3p1O2vWtFd0PkWGHZEl9QdWA+cCW4FlwMyIWJW3zVDglYjYkzZlnR0Rl0gaDPSL%0AiN2ShgBLgGsiYomkhcDOiFiY9hAbHhFzi5w/snx9ZmbNSBIRoZ7sk2nNJCL2SZpDEgT9gFsiYpWk%0A2cnquAk4EVgkqRN4Arg03f1o4IeSIi3nbRGxJF23EPg3SZ8GNgIfy/J1mJlZ1zKtmdSbayZmZj3X%0Am5qJ74A3M7OKOUzMzKxiDhMzM6uYw8TMzCrmMDEzs4o5TMzMrGIOEzMzq5jDxMzMKuYwMTOzijlM%0AzMysYg4TMzOrmMPEzMwq5jAxM7OKOUzMzKxiDhMzM6uYw8TMzCrmMDEzs4o5TMzMrGIOEzMzq1jm%0AYSJpmqSnJK2RdFWR9cMkLZa0UtJSSVMK1veTtFzSXXnL5knanC5fLmla1q/DzMxKyzRMJPUDbgDO%0AB04CZko6oWCzq4EVEXEqcDHw9YL1VwJPFjn8dRFxRvp3d5WL3nTa29vrXYSG4ffiAL8XB/i9qEzW%0ANZOpQEdEbIyIPcDtwPSCbaYA9wNExGpgvKQRAJLGABcANxc5tjIrdRPy/ygH+L04wO/FAX4vKpN1%0AmBwDbMp7vjldlm8lMANA0lRgLDAmXfdPwH8Dosix50h6RNLNkoZWtdRmZtYjjXABfgEwXNJy4HJg%0ABbBP0p8D2yPiEZJaSH5N5EZgYkScBmwDrqtxmc3MLI8iiv3or9LBpbOA+RExLX0+F4iIWNjFPuuA%0AU0iupVwE7AUOA44AFkfEJwu2Hwf8OCJOKXKs7F6cmVkTi4geXUrIOkz6A6uBc4GtwDJgZkSsyttm%0AKPBKROyRNAs4OyIuKTjOu4G/jYgPpc9HRcS29PHngTMj4hOZvRAzM+vSgCwPHhH7JM0BlpA0qd0S%0AEaskzU5Wx03AicAiSZ3AE8ClZRz6WkmnAZ3ABmB2Ji/AzMzKkmnNxMzMWkMjXICvuu5ulGw1kjak%0AN4WukLSs3uWpJUm3SNou6dG8ZcMlLZG0WtI9rdIbsMR70XI3AEsaI+l+SU9IekzSFenylvtcFHkv%0A/jpd3uPPRdPVTNIbJdeQXKfZAjwEXBgRT9W1YHWUdmp4W0Q8X++y1JqkdwK7ge/kOmlIWgg8FxHX%0Apj82hkfE3HqWsxZKvBfzgF0R0TI9IiWNAkZFxCOSDgceJrn/7VO02Oeii/fi4/Twc9GMNZNybpRs%0ANaI5/1t3KyJ+DRSG6HRgUfp4EfDhmhaqTkq8F9BiNwBHxLb0lgMiYjewiuTetpb7XJR4L3L3Avbo%0Ac9GMXzDl3CjZagK4V9JDaY+5VjcyIrZD8j8TMLLO5am3lr0BWNJ44DRgKXB0K38u8t6L36aLevS5%0AaMYwsYOdHRFnkAxNc3na3GEHNFdbb8+07A3AabPOHcCV6a/yws9By3wuirwXPf5cNGOY/J5kSJac%0AMemylhURW9N/dwA/JGkKbGXbJR0N+9uM/1Dn8tRNROyIAxdOvw2cWc/y1IqkASRfnv8aEXemi1vy%0Ac1HsvejN56IZw+QhYJKkcZIGARcCd3WzT9OSNDj91YGkIcD7gcfrW6qaKxyO5y7gkvTxxcCdhTs0%0AsTe8F+mXZs4MWuez8S/AkxFxfd6yVv1cHPRe9OZz0XS9uSDpGgxcz4EbJRfUuUh1I2kCSW0kSG5S%0Ava2V3g9J3wXagCOB7cA84EfAD4BjgY3AxyLihXqVsVZKvBfvIWkn338DcO66QbOSdDbwIPAYyf8X%0AQTJ80zLg32ihz0UX78Un6OHnoinDxMzMaqsZm7nMzKzGHCZmZlYxh4mZmVXMYWJmZhVzmJiZWcUc%0AJmZmVjGHifVp6fDZ7ytYdqWkb3az366My3WUpKWSHk778ueve0DSGenjCelUCe8rcox/SIcFLznN%0AdTdleLekH+c9/7Kkn0kaKKld0kN5694m6YG8/Tol/Xne+h9LeldvymGtwWFifd13gZkFyy5Ml3cl%0A6xuszgMejYi3RcR/FNtA0hjg58DnI+LeIpvMAk6JiLLm5FEyTXahSNd9EfhT4MPpaNoBjJB0fuG2%0Aqc3A/yjnvGbgMLG+79+BC9LxhZA0DnhLRPyHpCGS7pP0u3RysA8V7lzk1/s3JH0yfXxG7he8pJ/n%0Axm0q2H+cpF+kx783nWzoVGAhMD2dWOiQIuUeDdwDfCEiflrkuHcChwMPS/po3nkeyZ0n3e5WSf9H%0A0tL0nEUOpb8Bzgc+GBGv5637B+CLRd9VWAm8KOncEuvN3sBhYn1aOuHXMuAD6aILSYbEAHiV5Jf4%0A24H3Av9Y6jCFC9Jw+gbwnyPiTOBW4KtF9v0GcGtEnEpSG/pGRKwE/ifw/Yg4IyJeK7LfonTbH5Z4%0AXdOBV9L9f5B3ntNy58nb/JiIOCsi/muRQ50NzAY+EBGvFLzm3wCvSXp3sSIAXwH+rlj5zAo5TKwZ%0A3E4SIqT/fi99LODvJa0E7gNGSyp3jorjgT8hmQdmBUmTz+gi2/1p3vn+leTLuxz3AhdJOrSLbfIH%0Ap+zqPD/o4hhr0+O8v8SxSwZGOplWFF7zMSvGYWLN4E7gXEmnA4dFxIp0+V8CRwGnR8TpJEOKF355%0A7+WN/x/k1gt4PK0ZnB4Rp0bEBzhYb6+9XEsywvUd6VTTxUSJx4Ve7mLdNpJ5bL4mqe2gE0Q8QPKa%0Azyqx/1dJmsI8iJ91yWFifV5EvAy0kwyl/b28VUOBP0REp6T3AOPy1uV+mW8EpqQ9nIYBuWsEq0ku%0AUJ8FSbOXpClFTv//ONAB4CLgVz0o9+eBF9NyF5NfM6nkPGtJhhH/v5JOKbLJV4D/XmLfe4HhQLH9%0AzPZzmFiz+B7JF15+mNwGnJk2c11EMr91TgBExGaSayyPkzSXLU+X7wE+AiyU9AiwgqSpqdAVwKfS%0Abf4SuLKMsub/yr8EGFWi+2/+dqXOU1aNISJ+B3wKuCudliDy1v2cpNZW6lhfIRmW3awkD0FvZmYV%0Ac83EzMwq5jAxM7OKOUzMzKxiDhMzM6uYw8TMzCrmMDEzs4o5TMzMrGIOEzMzq9j/B8v0jBDbKPEn%0AAAAAAElFTkSuQmCC" /></p>
+<ol>
+<li>Akurasi pelatihan meningkat seiring meningkatnya kompleksitas model</li>
+<li>Akurasi pengujian menghukum model yang terlalu kompleks atau tidak cukup kompleks</li>
+<li>Untuk model KNN, kompleksitas ditentukan oleh nilai K (nilai lebih rendah = lebih kompleks)</li>
+</ol>
+<h3 id="3-membuat-prediksi-pada-data-out-of-sample">3. Membuat prediksi pada data out-of-sample<a class="headerlink" href="#3-membuat-prediksi-pada-data-out-of-sample" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="c1"># instantiate the model with the best known parameters</span>
+<span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+
+<span class="c1"># train the model with X and y (not X_train and y_train)</span>
+<span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># make a prediction for an out-of-sample observation</span>
+<span class="n">knn</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span>/Users/ritchieng/anaconda3/envs/py3k/lib/python3.5/site-packages/sklearn/utils/validation.py:386: DeprecationWarning: Passing 1d arrays as data is deprecated in 0.17 and willraise ValueError in 0.19. Reshape your data either using X.reshape(-1, 1) if your data has a single feature or X.reshape(1, -1) if it contains a single sample.
+  DeprecationWarning)
+</pre></div>
+
+<div class="codehilite"><pre><span></span>output :
+array([1]
+</pre></div>
+
+<p>Referensi : </p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+        
+          <a href="../TREE/" title="DECISION TREE" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                DECISION TREE
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2016 - 2019 samsul arifin
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.css">
+    
+      <a href="http://struct.cc" class="md-footer-social__link fa fa-globe"></a>
+    
+      <a href="https://github.com/squidfunk" class="md-footer-social__link fa fa-github-alt"></a>
+    
+      <a href="https://twitter.com/squidfunk" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://linkedin.com/in/squidfunk" class="md-footer-social__link fa fa-linkedin"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.8c0d971c.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+  </body>
+</html>

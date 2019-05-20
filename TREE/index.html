@@ -1,0 +1,939 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="DATA MINING PROJECT">
+      
+      
+        <link rel="canonical" href="https://najibtombro.github.io/170441100099_samsul-arifin_KNN-Klasifikasi/TREE/">
+      
+      
+        <meta name="author" content="samsul arifin">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.2.0">
+    
+    
+      
+        <title>DECISION TREE - DATA MINING</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.750b69bd.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "None", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#decision-tree" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://najibtombro.github.io/170441100099_samsul-arifin_KNN-Klasifikasi/" title="DATA MINING" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              DATA MINING
+            </span>
+            <span class="md-header-nav__topic">
+              DECISION TREE
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/najibtombro/170441100099_samsul-arifin_KNN-Klasifikasi" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    najibtombro/170441100099_samsul-arifin_KNN-Klasifikasi
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+<nav class="md-tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+      
+        
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://najibtombro.github.io/170441100099_samsul-arifin_KNN-Klasifikasi/" title="DATA MINING" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    DATA MINING
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/najibtombro/170441100099_samsul-arifin_KNN-Klasifikasi" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    najibtombro/170441100099_samsul-arifin_KNN-Klasifikasi
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../KNN/" title="K-nearest neighbor" class="md-nav__link">
+      K-nearest neighbor
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        DECISION TREE
+      </label>
+    
+    <a href="./" title="DECISION TREE" class="md-nav__link md-nav__link--active">
+      DECISION TREE
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pengertian-decision-tree" title="pengertian Decision Tree" class="md-nav__link">
+    pengertian Decision Tree
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#berikut-adalah-program-yang-akan-saya-tampilkan-yaitu-exploring-decision-trees-using-pubg-data" title="berikut adalah program yang akan saya tampilkan yaitu Exploring decision trees using PUBG data" class="md-nav__link">
+    berikut adalah program yang akan saya tampilkan yaitu Exploring decision trees using PUBG data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pubg" title="PUBG" class="md-nav__link">
+    PUBG
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision-trees" title="Decision Trees" class="md-nav__link">
+    Decision Trees
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prepare-data" title="Prepare data" class="md-nav__link">
+    Prepare data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-engineering" title="Feature Engineering" class="md-nav__link">
+    Feature Engineering
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision-tree-model" title="Decision tree model" class="md-nav__link">
+    Decision tree model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#random-forest" title="Random forest" class="md-nav__link">
+    Random forest
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pengertian-decision-tree" title="pengertian Decision Tree" class="md-nav__link">
+    pengertian Decision Tree
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#berikut-adalah-program-yang-akan-saya-tampilkan-yaitu-exploring-decision-trees-using-pubg-data" title="berikut adalah program yang akan saya tampilkan yaitu Exploring decision trees using PUBG data" class="md-nav__link">
+    berikut adalah program yang akan saya tampilkan yaitu Exploring decision trees using PUBG data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pubg" title="PUBG" class="md-nav__link">
+    PUBG
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision-trees" title="Decision Trees" class="md-nav__link">
+    Decision Trees
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prepare-data" title="Prepare data" class="md-nav__link">
+    Prepare data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-engineering" title="Feature Engineering" class="md-nav__link">
+    Feature Engineering
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision-tree-model" title="Decision tree model" class="md-nav__link">
+    Decision tree model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#random-forest" title="Random forest" class="md-nav__link">
+    Random forest
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="decision-tree"><strong>Decision Tree</strong><a class="headerlink" href="#decision-tree" title="Permanent link">&para;</a></h1>
+<p><img alt="" src="../assets/images/54.png" /></p>
+<h5 id="pengertian-decision-tree"><strong>pengertian Decision Tree</strong><a class="headerlink" href="#pengertian-decision-tree" title="Permanent link">&para;</a></h5>
+<p><strong>Decision tree</strong> menggunakan strukur pohon berhierarki. Konsep dari metode ini adalah mengubah data menjadi pohon keputusan dan aturan-aturan keputusan. Manfaat dari penggunaan metode ini adalah kemampuannya memecah proses pengambilan keputusan yang kompleks menjadi lebih sederhana sehingga pengambilan keputusan lebih mudah dipahami dan lebih mudah di interpetasi. Kualitas dari suatu hasil decision trees tergantung dari bagaimana pohon tersebut didesain. Metode lain yang bisa digunakan untuk melakukan klasifikasi yaitu <em>Random Forest</em> yang merupakan pengembangan dari decision tree.</p>
+<p><strong>Decision Tree</strong> (pohon keputusan) secara khusus melakukan pemodelan dengan berusaha memodel record yang tersedia ke dalam bentuk pohon keputusan. Dimana dalam suatu pohon keputusan akan ada interior node yang dilabeli dengan suatu variabel. Dari setiap interior node akan keluar tanda panah yang dilabeli dengan nilai dari variabel yang ada pada interior node tersebut. Di bagian akhir pohon keputusan akan terdapat leaf yang dilabeli dengan class atau category. Dalam penggunaannya, atau dalam pengimplementasian model decision trees ini ke dalam suatu sistem (umumnya sistem pendukung keputusan), model pohon keputusan yang didapat perlu diekstrak ke dalam bentuk rule-rule yang berbentuk if – then.</p>
+<h5 id="berikut-adalah-program-yang-akan-saya-tampilkan-yaitu-exploring-decision-trees-using-pubg-data">berikut adalah program yang akan saya tampilkan yaitu <strong>Exploring decision trees using PUBG data</strong><a class="headerlink" href="#berikut-adalah-program-yang-akan-saya-tampilkan-yaitu-exploring-decision-trees-using-pubg-data" title="Permanent link">&para;</a></h5>
+<h4 id="pubg"><strong>PUBG</strong><a class="headerlink" href="#pubg" title="Permanent link">&para;</a></h4>
+<p>​   Video game gaya Battle Royale telah mengejutkan dunia. 100 pemain dijatuhkan ke sebuah pulau dengan tangan kosong dan harus menjelajahi, mengais, dan menghilangkan pemain lain sampai hanya satu yang tersisa, semuanya sementara zona bermain terus menyusut.</p>
+<div class="codehilite"><pre><span></span>(PUBG) Player Unknown Battle Grounds telah menikmati popularitas besar. Dengan lebih dari 50 juta kopi terjual, ini adalah game terlaris kelima sepanjang masa, dan memiliki jutaan pemain bulanan aktif.
+</pre></div>
+
+
+<p>​   Tim di PUBG telah membuat data game resmi tersedia untuk umum untuk dijelajahi dan diambil di luar "The Blue Circle." Kompetisi ini bukan situs PUBG resmi atau berafiliasi - Kaggle mengumpulkan data yang dimungkinkan melalui API Pengembang PUBG</p>
+<p>Anda diberi lebih dari 65.000 data gim pemain yang dianonimkan, dipecah menjadi set pelatihan dan pengujian, dan diminta untuk memprediksi penempatan akhir dari statistik dalam gim akhir dan peringkat pemain awal.</p>
+<p>​   Apa strategi terbaik untuk menang di PUBG? Haruskah Anda duduk di satu tempat dan menyembunyikan jalan menuju kemenangan, atau apakah Anda perlu menjadi yang terbaik? Biarkan data yang berbicara!</p>
+<div class="codehilite"><pre><span></span>%matplotlib inline
+import numpy as np 
+import pandas as
+import os
+</pre></div>
+
+<p><img alt="" src="../assets/images/55.PNG" /></p>
+<div class="codehilite"><pre><span></span>train = pd.read_csv(&#39;Downloads/input/train_V2.csv&#39;)
+test = pd.read_csv(&#39;Download/input/test_V2.csv&#39;)
+</pre></div>
+
+<div class="codehilite"><pre><span></span>train.head()
+</pre></div>
+
+<p><img alt="" src="../assets/images/56.PNG" /></p>
+<div class="codehilite"><pre><span></span>train.shape, test.shape
+</pre></div>
+
+<p><img alt="" src="../assets/images/57.PNG" /></p>
+<div class="codehilite"><pre><span></span>test.head()
+</pre></div>
+
+<p><img alt="58" src="../assets/images/58.PNG" /></p>
+<div class="codehilite"><pre><span></span>train.columns
+</pre></div>
+
+<p><img alt="59" src="../assets/images/59.PNG" /></p>
+<div class="codehilite"><pre><span></span>target_col = &#39;winPlacePerc&#39;
+
+train.drop(2744604, inplace=True, errors=&#39;ignore&#39;)
+</pre></div>
+
+<h3 id="decision-trees"><strong>Decision Trees</strong><a class="headerlink" href="#decision-trees" title="Permanent link">&para;</a></h3>
+<p>Mari kita membangun penyesuai pohon keputusan, Regrasor adalah model pembelajaran meachine yang digunakan untuk memprediksi variabel kontinu. Karena Kami berharap memiliki hubungan fungsional berkelanjutan antara input dan output akhir. Lebih baik menggunakan Regrassor untuk masalah ini </p>
+<h4 id="prepare-data"><strong>Prepare data</strong><a class="headerlink" href="#prepare-data" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span>train.dtypes
+</pre></div>
+
+<p><img alt="60" src="../assets/images/60.PNG" /></p>
+<div class="codehilite"><pre><span></span>train[&#39;Id&#39;].describe()
+</pre></div>
+
+<p><img alt="61" src="../assets/images/61.PNG" /></p>
+<div class="codehilite"><pre><span></span>train[&#39;groupId&#39;].describe()
+</pre></div>
+
+<p><img alt="62" src="../assets/images/62.PNG" /></p>
+<div class="codehilite"><pre><span></span>train[&#39;matchId&#39;].describe()
+</pre></div>
+
+<p><img alt="63" src="../assets/images/63.PNG" /></p>
+<div class="codehilite"><pre><span></span>train[&#39;matchType&#39;].describe()
+</pre></div>
+
+<p><img alt="64" src="../assets/images/64.PNG" /></p>
+<div class="codehilite"><pre><span></span>train[&#39;matchType&#39;].unique()
+</pre></div>
+
+<p><img alt="65" src="../assets/images/65.PNG" /></p>
+<div class="codehilite"><pre><span></span>pd.get_dummies(train[&#39;matchType&#39;]).head()
+</pre></div>
+
+<p><img alt="66" src="../assets/images/66.PNG" /></p>
+<div class="codehilite"><pre><span></span># Dapatkan satu penyandian kolom yang cocok dengan MatchType
+one_hot_train = pd.get_dummies(train[&#39;matchType&#39;])
+
+# Jatuhkan kolom B seperti yang sekarang dikodekan
+train = train.drop(&#39;matchType&#39;, axis = 1)
+
+# Bergabung dengan df yang disandikan
+train = train.join(one_hot_train)
+train.head()
+</pre></div>
+
+<p><img alt="67" src="../assets/images/67.PNG" /></p>
+<div class="codehilite"><pre><span></span># Get one hot encoding of columns matchType
+one_hot_test = pd.get_dummies(test[&#39;matchType&#39;])
+
+# Drop column B as it is now encoded
+test = test.drop(&#39;matchType&#39;, axis = 1)
+
+# Join the encoded df
+test = test.join(one_hot_test)
+test.head()
+</pre></div>
+
+<p><img alt="68" src="../assets/images/68.PNG" /></p>
+<h4 id="feature-engineering"><strong>Feature Engineering</strong><a class="headerlink" href="#feature-engineering" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span>print(&quot;Adding Features&quot;)
+def add_feature(df):
+    df[&#39;headshotrate&#39;] = df[&#39;kills&#39;]/df[&#39;headshotKills&#39;]
+    df[&#39;killStreakrate&#39;] = df[&#39;killStreaks&#39;]/df[&#39;kills&#39;]
+    df[&#39;healthitems&#39;] = df[&#39;heals&#39;] + df[&#39;boosts&#39;]
+    df[&#39;totalDistance&#39;] = df[&#39;rideDistance&#39;] + df[&quot;walkDistance&quot;] + df[&quot;swimDistance&quot;]
+    df[&#39;killPlace_over_maxPlace&#39;] = df[&#39;killPlace&#39;] / df[&#39;maxPlace&#39;]
+    df[&#39;headshotKills_over_kills&#39;] = df[&#39;headshotKills&#39;] / df[&#39;kills&#39;]
+    df[&#39;distance_over_weapons&#39;] = df[&#39;totalDistance&#39;] / df[&#39;weaponsAcquired&#39;]
+    df[&#39;walkDistance_over_heals&#39;] = df[&#39;walkDistance&#39;] / df[&#39;heals&#39;]
+    df[&#39;walkDistance_over_kills&#39;] = df[&#39;walkDistance&#39;] / df[&#39;kills&#39;]
+    df[&#39;killsPerWalkDistance&#39;] = df[&#39;kills&#39;] / df[&#39;walkDistance&#39;]
+    df[&quot;skill&quot;] = df[&quot;headshotKills&quot;] + df[&quot;roadKills&quot;]
+    df[df == np.Inf] = np.NaN
+    df[df == np.NINF] = np.NaN
+    print(&quot;Removing Na&#39;s From DF&quot;)
+    df.fillna(0, inplace=True)
+</pre></div>
+
+<div class="codehilite"><pre><span></span>train.shape, test.shape
+</pre></div>
+
+<p><img alt="69" src="../assets/images/69.PNG" /></p>
+<div class="codehilite"><pre><span></span>from sklearn.model_selection import train_test_split
+train, val = train_test_split(train, test_size=0.2)
+</pre></div>
+
+<div class="codehilite"><pre><span></span>trainIds = train[&#39;Id&#39;]
+testIds = test[&#39;Id&#39;]
+</pre></div>
+
+<div class="codehilite"><pre><span></span>#??train.drop
+</pre></div>
+
+<div class="codehilite"><pre><span></span>x_train = train.drop([&#39;Id&#39;, &#39;groupId&#39;, &#39;matchId&#39;, target_col], axis=1)
+x_train.head(1
+</pre></div>
+
+<p><img alt="70" src="../assets/images/70.PNG" /></p>
+<div class="codehilite"><pre><span></span>y_train = train[target_col]
+y_train.head()
+</pre></div>
+
+<p><img alt="71" src="../assets/images/71.PNG" /></p>
+<div class="codehilite"><pre><span></span>x_val = val.drop([&#39;Id&#39;, &#39;groupId&#39;, &#39;matchId&#39;, target_col], axis=1)
+x_val.head(1)
+</pre></div>
+
+<p><img alt="72" src="../assets/images/72.PNG" /></p>
+<div class="codehilite"><pre><span></span>y_val = val[target_col]
+y_val.head()
+</pre></div>
+
+<p><img alt="73" src="../assets/images/73.PNG" /></p>
+<div class="codehilite"><pre><span></span>x_test = test.drop([&#39;Id&#39;, &#39;groupId&#39;, &#39;matchId&#39;], axis=1)
+x_test.head(1)
+</pre></div>
+
+<p><img alt="74" src="../assets/images/74.PNG" /></p>
+<div class="codehilite"><pre><span></span>x_train.shape, x_test.shape
+</pre></div>
+
+<p><img alt="75" src="../assets/images/75.PNG" /></p>
+<div class="codehilite"><pre><span></span>from sklearn.tree import DecisionTreeRegressor
+</pre></div>
+
+<div class="codehilite"><pre><span></span>#%timeit 
+dtree=DecisionTreeRegressor(max_depth=3)
+dtree.fit(x_train, y_train)
+</pre></div>
+
+<p><img alt="76" src="../assets/images/76.PNG" /></p>
+<div class="codehilite"><pre><span></span>dtree.score(x_train, y_train)
+</pre></div>
+
+<p><img alt="77" src="../assets/images/77.PNG" /></p>
+<div class="codehilite"><pre><span></span>dtree.score(x_val, y_val)
+</pre></div>
+
+<p><img alt="78" src="../assets/images/78.PNG" /></p>
+<div class="codehilite"><pre><span></span>from IPython.display import SVG
+from graphviz import Source
+from sklearn import tree
+graph = Source( tree.export_graphviz(dtree, out_file=None, feature_names=x_train.columns))
+SVG(graph.pipe(format=&#39;svg&#39;)
+</pre></div>
+
+<p><img alt="79" src="../assets/images/79.PNG" /></p>
+<div class="codehilite"><pre><span></span>p_val = dtree.predict(x_val)
+</pre></div>
+
+<div class="codehilite"><pre><span></span>def mae(p, t):
+    return np.sum(np.abs(p - t)) / len(p)
+</pre></div>
+
+<div class="codehilite"><pre><span></span>mae(p_val, y_val)
+</pre></div>
+
+<p><img alt="80" src="../assets/images/80.PNG" /></p>
+<h4 id="decision-tree-model"><strong>Decision tree model</strong><a class="headerlink" href="#decision-tree-model" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span>from sklearn.tree import DecisionTreeRegressor
+</pre></div>
+
+<div class="codehilite"><pre><span></span>dtree=DecisionTreeRegressor(max_depth=15)
+dtree.fit(x_train, y_train)
+</pre></div>
+
+<p><img alt="81" src="../assets/images/81.PNG" /></p>
+<div class="codehilite"><pre><span></span>def print_score(mm):
+    print(&quot;train r^2 &quot; + str(mm.score(x_train, y_train)))
+    print(&quot;validation r^2 &quot; + str(mm.score(x_val, y_val)))
+    p_val = mm.predict(x_val)
+    p_train = mm.predict(x_train)
+    print(&quot;mean absolute error(Train): &quot; + str(mae(p_train, y_train)))
+    print(&quot;mean absolute error(Validation): &quot; + str(mae(p_val, y_val)))
+print_score(dtree)
+</pre></div>
+
+<p><img alt="82" src="../assets/images/82.PNG" /></p>
+<div class="codehilite"><pre><span></span>p_test = dtree.predict(x_test)
+</pre></div>
+
+<div class="codehilite"><pre><span></span>p_test
+</pre></div>
+
+<p><img alt="83" src="../assets/images/83.PNG" /></p>
+<div class="codehilite"><pre><span></span>submission = pd.DataFrame()
+submission[&#39;Id&#39;] = testIds
+submission[target_col] = p_test
+</pre></div>
+
+<div class="codehilite"><pre><span></span>submission.head()
+</pre></div>
+
+<p><img alt="84" src="../assets/images/84.PNG" /></p>
+<div class="codehilite"><pre><span></span>submission.to_csv(&quot;submission.csv&quot;, index=False)
+</pre></div>
+
+<div class="codehilite"><pre><span></span>def train_and_get_score(max_depth):
+    dtree=DecisionTreeRegressor(max_depth=max_depth)
+    dtree.fit(x_train[:10000], y_train[:10000])
+    p_val = dtree.predict(x_val[:1000])
+    p_train = dtree.predict(x_train[:10000])
+    return mae(p_train, y_train[:10000]), mae(p_val, y_val[:1000])
+</pre></div>
+
+<div class="codehilite"><pre><span></span>train_and_get_score(5)
+</pre></div>
+
+<p><img alt="85" src="../assets/images/85.PNG" /></p>
+<div class="codehilite"><pre><span></span>train_score = []
+valid_score = []
+x_axis = []
+for max_depth in range(1, 40, 5):
+    ts, vs = train_and_get_score(max_depth)
+    train_score.append(ts)
+    valid_score.append(vs)
+    x_axis.append(max_depth)
+</pre></div>
+
+<div class="codehilite"><pre><span></span>import matplotlib.pyplot as plt
+plt.plot(x_axis, train_score,)
+plt.plot(x_axis, valid_score)
+plt.ylabel(&#39;Score&#39;)
+plt.xlabel(&#39;max_depth&#39;)
+plt.show()
+</pre></div>
+
+<p><img alt="86" src="../assets/images/86.PNG" /></p>
+<h4 id="random-forest"><strong>Random forest</strong><a class="headerlink" href="#random-forest" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span>from sklearn.ensemble import RandomForestRegressor
+model = RandomForestRegressor(n_jobs=-1, max_depth=15, max_features=&#39;sqrt&#39;, n_estimators=100)
+%time model.fit(x_train, y_train)
+</pre></div>
+
+<p><img alt="87" src="../assets/images/87.PNG" /></p>
+<div class="codehilite"><pre><span></span>print_score(model)
+</pre></div>
+
+<p><img alt="88" src="../assets/images/88.PNG" /></p>
+<div class="codehilite"><pre><span></span>model.estimators_[0]
+</pre></div>
+
+<p><img alt="89" src="../assets/images/89.PNG" /></p>
+<div class="codehilite"><pre><span></span>print_score(model.estimators_[0])
+</pre></div>
+
+<p><img alt="90" src="../assets/images/90.PNG" /></p>
+<div class="codehilite"><pre><span></span>#for dtree_model in model.estimators_:
+#    print_score(dtree_model)
+#    print(&quot;------------------------------------&quot;)
+</pre></div>
+
+<div class="codehilite"><pre><span></span>p_test = model.predict(x_test)
+submission = pd.DataFrame()
+submission[&#39;Id&#39;] = testIds
+submission[target_col] = p_test
+submission.to_csv(&quot;submission_random_forest_30.csv&quot;, index=False)
+</pre></div>
+
+<div class="codehilite"><pre><span></span>feature_imp = pd.DataFrame(model.feature_importances_,
+                                   index = x_train.columns,
+                                    columns=[&#39;importance&#39;]).sort_values(&#39;importance&#39;, ascending=False)
+</pre></div>
+
+<div class="codehilite"><pre><span></span>feature_imp
+</pre></div>
+
+<p><img alt="91" src="../assets/images/91.PNG" /></p>
+<div class="codehilite"><pre><span></span>feature_imp[&#39;importance&#39;].nlargest(10).plot(kind=&#39;barh&#39;)
+</pre></div>
+
+<p><img alt="92" src="../assets/images/92.PNG" /></p>
+<div class="codehilite"><pre><span></span>from lightgbm import LGBMRegressor
+params = {
+    &#39;n_estimators&#39;: 100,
+    &#39;learning_rate&#39;: 0.3, 
+    &#39;num_leaves&#39;: 30,
+    &#39;objective&#39;: &#39;regression_l2&#39;, 
+    &#39;metric&#39;: &#39;mae&#39;,
+    &#39;verbose&#39;: -1,
+}
+
+model = LGBMRegressor(**params)
+model.fit(
+   x_train, y_train,
+    eval_metric=&#39;mae&#39;,
+    verbose=20,
+)
+</pre></div>
+
+<p><img alt="93" src="../assets/images/93.PNG" /></p>
+<div class="codehilite"><pre><span></span>print_score(model)
+</pre></div>
+
+<p><img alt="94" src="../assets/images/94.PNG" /></p>
+<div class="codehilite"><pre><span></span>p_test = model.predict(x_test)
+submission = pd.DataFrame()
+submission[&#39;Id&#39;] = testIds
+submission[target_col] = p_test
+submission.to_csv(&quot;submission_lightgdm.csv&quot;, index=False)
+</pre></div>
+
+<div class="codehilite"><pre><span></span>feature_imp = pd.DataFrame(model.feature_importances_,
+                                   index = x_train.columns,
+                                    columns=[&#39;importance&#39;]).sort_values(&#39;importance&#39;, ascending=False)
+</pre></div>
+
+<div class="codehilite"><pre><span></span>feature_imp[&#39;importance&#39;].nlargest(10).plot(kind=&#39;barh&#39;)
+</pre></div>
+
+<p><img alt="95" src="../assets/images/95.PNG" /></p>
+<p><strong>Kelebihan Pohon Keputusan</strong></p>
+<p>Kelebihan dari metode pohon keputusan adalah:</p>
+<p>• Daerah pengambilan keputusan yang sebelumnya kompleks dan sangat global, dapat diubah menjadi lebih simpel dan spesifik.</p>
+<p>• Eliminasi perhitungan-perhitungan yang tidak diperlukan, karena ketika menggunakan metode pohon keputusan maka sample diuji hanya berdasarkan kriteria atau kelas tertentu.</p>
+<p>•  Fleksibel untuk memilih fitur dari internal node yang berbeda, fitur yang terpilih akan membedakan suatu kriteria dibandingkan kriteria yang lain dalam node yang sama. Kefleksibelan metode pohon keputusan ini meningkatkan kualitas keputusan yang dihasilkan jika dibandingkan ketika menggunakan metode penghitungan satu tahap yang lebih konvensional</p>
+<p>• Dalam analisis multivariat, dengan kriteria dan kelas yang jumlahnya sangat banyak, seorang penguji biasanya perlu untuk mengestimasikan baik itu distribusi dimensi tinggi ataupun parameter tertentu dari distribusi kelas tersebut. Metode pohon keputusan dapat menghindari munculnya permasalahan ini dengan menggunakan criteria yang jumlahnya lebih sedikit pada setiap node internal tanpa banyak mengurangi kualitas keputusan yang dihasilkan.</p>
+<p><strong>Kekurangan Pohon Keputusan</strong></p>
+<p>•  Terjadi overlap terutama ketika kelas-kelas dan criteria yang digunakan jumlahnya sangat banyak. Hal tersebut juga dapat menyebabkan meningkatnya waktu pengambilan keputusan dan jumlah memori yang diperlukan.</p>
+<p>•   Pengakumulasian jumlah eror dari setiap tingkat dalam sebuah pohon keputusan yang besar.</p>
+<p>•   Kesulitan dalam mendesain pohon keputusan yang optimal.</p>
+<p>•   Hasil kualitas keputusan yang didapatkan dari metode pohon keputusan sangat tergantung pada bagaimana pohon tersebut didesain.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../KNN/" title="K-nearest neighbor" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                K-nearest neighbor
+              </span>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2016 - 2019 samsul arifin
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.css">
+    
+      <a href="http://struct.cc" class="md-footer-social__link fa fa-globe"></a>
+    
+      <a href="https://github.com/squidfunk" class="md-footer-social__link fa fa-github-alt"></a>
+    
+      <a href="https://twitter.com/squidfunk" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://linkedin.com/in/squidfunk" class="md-footer-social__link fa fa-linkedin"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.8c0d971c.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+  </body>
+</html>
